@@ -379,10 +379,11 @@ if nanoHUB_flag:
                         showcache=False,
                         outcb=outcb)
 else:
-    if (hublib_flag):
+    # if (hublib_flag):
+    if False:
         run_button = RunCommand(start_func=run_sim_func,
                             done_func=run_done_func,
-                            cachename='Cycle_Training',
+                            cachename=None,
                             showcache=False,
                             outcb=outcb)  
     else:
@@ -394,14 +395,14 @@ else:
         run_button.on_click(run_button_cb)
 
 
-if nanoHUB_flag or hublib_flag:
-    read_config = widgets.Dropdown(
-        description='Load Config',
-        options=get_config_files(),
-        tooltip='Config File or Previous Run',
-    )
-    read_config.style = {'description_width': '%sch' % str(len(read_config.description) + 1)}
-    read_config.observe(read_config_cb, names='value') 
+# if nanoHUB_flag or hublib_flag:
+#     read_config = widgets.Dropdown(
+#         description='Load Config',
+#         options=get_config_files(),
+#         tooltip='Config File or Previous Run',
+#     )
+#     read_config.style = {'description_width': '%sch' % str(len(read_config.description) + 1)}
+#     read_config.observe(read_config_cb, names='value') 
 
 tab_height = 'auto'
 tab_layout = widgets.Layout(width='auto',height=tab_height, overflow_y='scroll',)   # border='2px solid black',
@@ -443,3 +444,9 @@ sub.update_dropdown_fields("data")   # WARNING: generates multiple "<Figure size
 # print('config_tab.svg_interval.value= ',config_tab.svg_interval.value )
 # print('config_tab.mcds_interval.value= ',config_tab.mcds_interval.value )
 #sub.update_params(config_tab)
+config_file_path = os.path.join('../data', 'PhysiCell_settings.xml')
+if not os.path.isfile(config_file_path):
+    raise FileNotFoundError(f"No such file or directory: '{config_file_path}'")
+fill_gui_params(config_file_path)
+output_dir = "tmpdir"
+sub.update_dropdown_fields("data")

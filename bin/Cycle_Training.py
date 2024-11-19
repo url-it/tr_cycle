@@ -34,6 +34,31 @@ if platform.system() != 'Windows':
 else:
     hublib_flag = False
 
+home = '/content'
+os.chdir(home)
+
+os.chdir('tr_Cycle')
+
+# Change to the data directory
+os.chdir('data')
+
+# Define the path to the XML file
+xml_file = 'PhysiCell_settings.xml'
+full_xml_filename = os.path.abspath(xml_file)
+
+# Check if the file exists
+if not os.path.isfile(full_xml_filename):
+    # Handle the error: copy the file from another location or provide an error message
+    print(f"File not found: {full_xml_filename}")
+    
+    # Example: Copy the file from another location
+    source_file_path = '../data/PhysiCell_settings.xml'
+    if os.path.isfile(source_file_path):
+        shutil.copy(source_file_path, full_xml_filename)
+        print(f"Copied {source_file_path} to {full_xml_filename}")
+    else:
+        raise FileNotFoundError(f"Source file not found: {source_file_path}")
+
 
 # join_our_list = "(Join/ask questions at https://groups.google.com/forum/#!forum/physicell-users)\n"
 
@@ -444,6 +469,8 @@ sub.update_dropdown_fields("data")   # WARNING: generates multiple "<Figure size
 # print('config_tab.svg_interval.value= ',config_tab.svg_interval.value )
 # print('config_tab.mcds_interval.value= ',config_tab.mcds_interval.value )
 #sub.update_params(config_tab)
+
+# ADDED THIS
 config_file_path = os.path.join('../data', 'PhysiCell_settings.xml')
 if not os.path.isfile(config_file_path):
     raise FileNotFoundError(f"No such file or directory: '{config_file_path}'")

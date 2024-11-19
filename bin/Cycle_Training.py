@@ -37,7 +37,7 @@ else:
 home = '/content'
 os.chdir(home)
 
-os.chdir('tr_Cycle')
+os.chdir('tr_cycle')
 
 # Change to the data directory
 os.chdir('data')

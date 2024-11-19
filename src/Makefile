@@ -32,7 +32,9 @@ ARCH := native # best auto-tuning
 # CFLAGS := -march=$(ARCH) -Ofast -s -fomit-frame-pointer -mfpmath=both -fopenmp -m64 -std=c++11
 # remove the -march arg to avoid SIGILL error on nanoHUB
 CFLAGS := -O3 -fomit-frame-pointer -mfpmath=both -fopenmp -m64 -std=c++11
-
+CFLAGS := -O3 -fomit-frame-pointer -mfpmath=both -fopenmp -m64 -std=c++11
+CFLAGS := -O3 -fomit-frame-pointer -fopenmp -std=c++11 -march=native -I/opt/homebrew/opt/libomp/include
+LDFLAGS := -L/opt/homebrew/opt/libomp/lib -lomp -fopenmp
 COMPILE_COMMAND := $(CC) $(CFLAGS) 
 
 BioFVM_OBJECTS := BioFVM_vector.o BioFVM_mesh.o BioFVM_microenvironment.o BioFVM_solvers.o BioFVM_matlab.o \
@@ -189,10 +191,6 @@ unzip:
 untar: 
 	cp ./archives/latest.tar .
 	tar -xzf latest.tar
-
+	
 animation:
 	cd output;magick mogrify -format jpg snapshot*.svg;magick snapshot*.jpg animation.gif
-    
-make notepad_edit:
-	notepad++ main.cpp ./config/PhysiCell_settings.xml ./custom_modules/custom.h ./custom_modules/custom.cpp
-    

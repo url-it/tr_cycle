@@ -815,6 +815,7 @@ class SubstrateTab(object):
             print("Once output files are generated, click the slider.")   
             return
 
+
         # set background color 
         bgcolor = self.bgcolor;  # 1.0 for white 
 

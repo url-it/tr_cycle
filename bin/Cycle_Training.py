@@ -325,9 +325,9 @@ def run_sim_func(s):
     os.makedirs('tmpdir')
 
     # shutil.copy('doc/Flow_Cytometry_small.png', 'tmpdir')
-    shutil.copy('doc/Flow_Cytometry_small.png', 'tmpdir')
+    # shutil.copy('doc/Flow_Cytometry_small.png', 'tmpdir')
 
-    source_file_path = '../doc/Flow_Cytometry_small.png'
+    source_file_path = 'doc/Flow_Cytometry_small.png'
     dest_file_path = os.path.join('tmpdir', 'Flow_Cytometry_small.png')
     if os.path.isfile(source_file_path):
         shutil.copy(source_file_path, dest_file_path)

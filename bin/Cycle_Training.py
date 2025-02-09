@@ -392,8 +392,10 @@ def run_button_cb(s):
     # sub.update_params(config_tab)
     sub.update(tdir)
 
-    subprocess.Popen(["../bin/myproj", "config.xml"])
-
+    run_button.description = "WAIT..."
+    subprocess.run(["../bin/myproj", "config.xml"])
+    sub.max_frames.value = int(config_tab.tmax.value / config_tab.svg_interval.value)    # 42
+    run_button.description = "Run"
 
 #-------------------------------------------------
 if nanoHUB_flag:

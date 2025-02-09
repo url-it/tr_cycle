@@ -34,30 +34,30 @@ if platform.system() != 'Windows':
 else:
     hublib_flag = False
 
-home = '/content'
-os.chdir(home)
+# home = '/content'
+# os.chdir(home)
 
-os.chdir('tr_cycle')
+# os.chdir('tr_cycle')
 
-# Change to the data directory
-os.chdir('data')
+# # Change to the data directory
+# os.chdir('data')
 
-# Define the path to the XML file
-xml_file = 'PhysiCell_settings.xml'
-full_xml_filename = os.path.abspath(xml_file)
+# # Define the path to the XML file
+# xml_file = 'PhysiCell_settings.xml'
+# full_xml_filename = os.path.abspath(xml_file)
 
-# Check if the file exists
-if not os.path.isfile(full_xml_filename):
-    # Handle the error: copy the file from another location or provide an error message
-    print(f"File not found: {full_xml_filename}")
+# # Check if the file exists
+# if not os.path.isfile(full_xml_filename):
+#     # Handle the error: copy the file from another location or provide an error message
+#     print(f"File not found: {full_xml_filename}")
     
-    # Example: Copy the file from another location
-    source_file_path = '../data/PhysiCell_settings.xml'
-    if os.path.isfile(source_file_path):
-        shutil.copy(source_file_path, full_xml_filename)
-        print(f"Copied {source_file_path} to {full_xml_filename}")
-    else:
-        raise FileNotFoundError(f"Source file not found: {source_file_path}")
+#     # Example: Copy the file from another location
+#     source_file_path = '../data/PhysiCell_settings.xml'
+#     if os.path.isfile(source_file_path):
+#         shutil.copy(source_file_path, full_xml_filename)
+#         print(f"Copied {source_file_path} to {full_xml_filename}")
+#     else:
+#         raise FileNotFoundError(f"Source file not found: {source_file_path}")
 
 
 # join_our_list = "(Join/ask questions at https://groups.google.com/forum/#!forum/physicell-users)\n"
@@ -67,8 +67,8 @@ if not os.path.isfile(full_xml_filename):
 about_tab = AboutTab()
 config_tab = ConfigTab()
 
-# xml_file = os.path.join('../data', 'PhysiCell_settings.xml')
-# full_xml_filename = os.path.abspath(xml_file)
+xml_file = os.path.join('data', 'PhysiCell_settings.xml')
+full_xml_filename = os.path.abspath(xml_file)
 
 tree = ET.parse(full_xml_filename)  # this file cannot be overwritten; part of tool distro
 xml_root = tree.getroot()
@@ -247,6 +247,15 @@ def fill_gui_params(config_file):
     if xml_root.find('.//cell_definitions'):
         cell_types_tab.fill_gui(xml_root)
 
+def run_done_func_colab(s, rdir):
+    global run_button
+    with debug_view:
+        print('run_done_func: results in', rdir)
+    
+    sub.update(rdir)
+    run_button.description = "Run"
+    run_button.button_style='success'
+
 
 def run_done_func(s, rdir):
     # with debug_view:
@@ -422,14 +431,14 @@ else:
         run_button.on_click(run_button_cb)
 
 
-# if nanoHUB_flag or hublib_flag:
-#     read_config = widgets.Dropdown(
-#         description='Load Config',
-#         options=get_config_files(),
-#         tooltip='Config File or Previous Run',
-#     )
-#     read_config.style = {'description_width': '%sch' % str(len(read_config.description) + 1)}
-#     read_config.observe(read_config_cb, names='value') 
+if nanoHUB_flag or hublib_flag:
+    read_config = widgets.Dropdown(
+        description='Load Config',
+        options=get_config_files(),
+        tooltip='Config File or Previous Run',
+    )
+    read_config.style = {'description_width': '%sch' % str(len(read_config.description) + 1)}
+    read_config.observe(read_config_cb, names='value') 
 
 tab_height = 'auto'
 tab_layout = widgets.Layout(width='auto',height=tab_height, overflow_y='scroll',)   # border='2px solid black',
@@ -447,8 +456,8 @@ else:
 
 homedir = os.getcwd()
 
-tool_title = widgets.Label(r'\(\textbf{Cycle_Training}\)')
-if nanoHUB_flag or hublib_flag:
+tool_title = widgets.Label('Cycle_Training')
+if False:
     # define this, but don't use (yet)
     remote_cb = widgets.Checkbox(indent=False, value=False, description='Submit as Batch Job to Clusters/Grid')
 
@@ -473,9 +482,9 @@ sub.update_dropdown_fields("data")   # WARNING: generates multiple "<Figure size
 #sub.update_params(config_tab)
 
 # ADDED THIS
-config_file_path = os.path.join('../data', 'PhysiCell_settings.xml')
-if not os.path.isfile(config_file_path):
-    raise FileNotFoundError(f"No such file or directory: '{config_file_path}'")
-fill_gui_params(config_file_path)
-output_dir = "tmpdir"
-sub.update_dropdown_fields("data")
+# config_file_path = os.path.join('../data', 'PhysiCell_settings.xml')
+# if not os.path.isfile(config_file_path):
+#     raise FileNotFoundError(f"No such file or directory: '{config_file_path}'")
+# fill_gui_params(config_file_path)
+# output_dir = "tmpdir"
+# sub.update_dropdown_fields("data")

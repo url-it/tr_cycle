@@ -325,7 +325,15 @@ def run_sim_func(s):
     os.makedirs('tmpdir')
 
     # shutil.copy('doc/Flow_Cytometry_small.png', 'tmpdir')
-    shutil.copy('../doc/Flow_Cytometry_small.png', 'tmpdir')
+    shutil.copy('doc/Flow_Cytometry_small.png', 'tmpdir')
+
+    source_file_path = '../doc/Flow_Cytometry_small.png'
+    dest_file_path = os.path.join('tmpdir', 'Flow_Cytometry_small.png')
+    if os.path.isfile(source_file_path):
+        shutil.copy(source_file_path, dest_file_path)
+        print(f"Copied {source_file_path} to {dest_file_path}")
+    else:
+        raise FileNotFoundError(f"Source file not found: {source_file_path}")
 
     # write the default config file to tmpdir
     new_config_file = "tmpdir/config.xml"  # use Path; work on Windows?

@@ -287,7 +287,7 @@ def run_done_func(s, rdir):
     # svg.update(rdir)
     sub.update(rdir)
 
-    animate_tab.gen_button.disabled = False
+    # animate_tab.gen_button.disabled = False
 
     # with debug_view:
     #     print('RDF DONE')
@@ -298,7 +298,7 @@ def run_sim_func(s):
     # with debug_view:
     #     print('run_sim_func')
 
-    animate_tab.gen_button.disabled = True
+    # animate_tab.gen_button.disabled = True
 
     # If cells or substrates toggled off in Config tab, toggle off in Plots tab
     if config_tab.toggle_svg.value == False:
@@ -453,12 +453,12 @@ tab_layout = widgets.Layout(width='auto',height=tab_height, overflow_y='scroll',
 
 if xml_root.find('.//cell_definitions'):
     titles = ['About', 'Config Basics', 'Microenvironment', 'User Params', 'Cell Types', 'Out: Plots', 'Animate']
-    tabs = widgets.Tab(children=[about_tab.tab, config_tab.tab, microenv_tab.tab, user_tab.tab, cell_types_tab.tab, sub.tab, animate_tab.tab],
+    tabs = widgets.Tab(children=[about_tab.tab, config_tab.tab, microenv_tab.tab, user_tab.tab, cell_types_tab.tab, sub.tab],
                    _titles={i: t for i, t in enumerate(titles)},
                    layout=tab_layout)
 else:
     titles = ['About', 'Config Basics', 'Microenvironment', 'User Params', 'Out: Plots', 'Animate']
-    tabs = widgets.Tab(children=[about_tab.tab, config_tab.tab, microenv_tab.tab, user_tab.tab, sub.tab, animate_tab.tab],
+    tabs = widgets.Tab(children=[about_tab.tab, config_tab.tab, microenv_tab.tab, user_tab.tab, sub.tab],
                    _titles={i: t for i, t in enumerate(titles)},
                    layout=tab_layout)
 

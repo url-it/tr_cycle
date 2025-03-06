@@ -474,12 +474,12 @@ class SubstrateTab(object):
                                                 tooltip='Download data', cb=self.download_cb)
 
         # Adding my title card for the plots tab
-        self.running_message = widgets.HTML(
-            value="<h2 style='color: red;'>Currently running, please wait...</h2>",
-            layout=widgets.Layout(display='none')
-        )
+        # self.running_message = widgets.HTML(
+        #     value="<h2 style='color: red;'>Currently running, please wait...</h2>",
+        #     layout=widgets.Layout(display='none')
+        # )
 
-        self.tab = widgets.VBox([self.running_message, self.i_plot])
+        # self.tab = widgets.VBox([self.running_message, self.i_plot])
 
     #---------------------------------------------------
     def update_dropdown_fields(self, data_dir):

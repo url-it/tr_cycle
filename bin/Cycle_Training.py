@@ -263,7 +263,6 @@ def run_done_func_colab(s, rdir):
     # Hiding msg
     sub.running_message.layout.display = 'none'
 
-
 def run_done_func(s, rdir):
     # with debug_view:
     #     print('run_done_func: results in', rdir)
@@ -398,11 +397,14 @@ def run_button_cb(s):
 #    write_config_file(new_config_file)
 
     # Adding my msg
-    sub.running_message.layout.display = 'block'
 
     with output_widget:
         output_widget.clear_output()
         print("Running myproj...")
+
+
+        sub.running_message.layout.display = 'block'
+
         
         # make sure we are where we started
         os.chdir(homedir)
@@ -439,6 +441,8 @@ def run_button_cb(s):
         process.wait()
         sub.max_frames.value = int(config_tab.tmax.value / config_tab.svg_interval.value)    # 42
         run_button.description = "Run"
+
+        sub.running_message.layout.display = 'none'
 
 #-------------------------------------------------
 if nanoHUB_flag:

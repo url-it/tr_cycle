@@ -429,7 +429,8 @@ def run_button_cb(s):
         sub.update(tdir)
 
         run_button.description = "WAIT..."
-        process = subprocess.Popen(["../bin/myproj", "config.xml"],
+        # CHANGED HERE FOR LOCAL MYPROJ
+        process = subprocess.Popen(["myproj", "config.xml"],
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE,
                                    universal_newlines=True)

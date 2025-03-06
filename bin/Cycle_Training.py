@@ -304,6 +304,9 @@ def run_sim_func(s):
 
     # animate_tab.gen_button.disabled = True
 
+    # Adding my msg
+    sub.running_message.layout.display = 'block'
+
     # If cells or substrates toggled off in Config tab, toggle off in Plots tab
     if config_tab.toggle_svg.value == False:
         sub.cells_toggle.value = False
@@ -390,6 +393,9 @@ def run_button_cb(s):
 #    new_config_file = full_xml_filename
     # print("new_config_file = ", new_config_file)
 #    write_config_file(new_config_file)
+
+    # Adding my msg
+    sub.running_message.layout.display = 'block'
 
     with output_widget:
         output_widget.clear_output()

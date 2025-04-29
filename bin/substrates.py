@@ -641,6 +641,7 @@ class SubstrateTab(object):
         with zipfile.ZipFile('svg.zip', 'w') as myzip:
             for f in glob.glob(file_str):
                 myzip.write(f, os.path.basename(f))   # 2nd arg avoids full filename path in the archive
+        plt.ion()
         if self.colab_flag:
             files.download('svg.zip')
     def download_local_cb(self,s):
@@ -1292,3 +1293,4 @@ class SubstrateTab(object):
             self.fig.savefig(png_file)
             plt.close(self.fig)
         self.png_frame=0
+        self.close('all')

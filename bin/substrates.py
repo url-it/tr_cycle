@@ -1293,4 +1293,4 @@ class SubstrateTab(object):
             self.fig.savefig(png_file)
             plt.close(self.fig)
         self.png_frame=0
-        self.close('all')
+        plt.close("all")
